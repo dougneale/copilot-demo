@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, process } from 'react'
 import logo from './logo.svg'
 import './App.css'
 
@@ -63,7 +63,7 @@ const TitleWithTemperatureOfMelbourne = ({ title }: any) => {
   const [temperature, setTemperature] = useState(0)
   useEffect(() => {
     const fetchTemperature = async () => {
-      const response = await fetch('https://api.openweathermap.org/data/2.5/weather?q=Melbourne&appid=b6907d289e10d714a6e88b30761fae22')
+      const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=Melbourne&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`)
       const data = await response.json()
       setTemperature(data.main.temp)
     }
